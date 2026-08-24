@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+const assetPath = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 export default function BackstageVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -32,10 +34,10 @@ export default function BackstageVideo() {
       loop
       playsInline
       preload="metadata"
-      poster="/images/classroom-practice-2025.jpg"
+      poster={assetPath("/images/classroom-practice-2025.jpg")}
       aria-label="Короткое видео пространства Beauty Detali School без звука"
     >
-      <source src="/videos/detali-backstage.mp4" type="video/mp4" />
+      <source src={assetPath("/videos/detali-backstage.mp4")} type="video/mp4" />
     </video>
   );
 }
