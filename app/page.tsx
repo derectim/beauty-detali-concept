@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 import MobileNav from "./mobile-nav";
 import BackstageVideo from "./backstage-video";
 
@@ -98,13 +98,13 @@ export default function Home() {
         </div>
 
         <figure className="hero-photo">
-          <Image
+          <img
             src="/images/hero-practice-2025.jpg"
             alt="Преподаватель помогает ученице отработать технику на модели"
             width={3024}
             height={4032}
-            sizes="(max-width: 820px) 100vw, 34vw"
-            priority
+            fetchPriority="high"
+            decoding="async"
           />
           <figcaption>
             <span>DETALI / PROCESS 01</span>
@@ -185,7 +185,7 @@ export default function Home() {
 
         <article className="feature feature-nail">
           <div className="feature-visual">
-            <Image src="/images/mentor-practice-2025.jpg" alt="Преподаватель показывает технику ученице на практике" width={3024} height={4032} sizes="(max-width: 820px) 100vw, 58vw" />
+            <img src="/images/mentor-practice-2025.jpg" alt="Преподаватель показывает технику ученице на практике" width={3024} height={4032} loading="lazy" decoding="async" />
             <span>NAIL / 01</span>
           </div>
           <div className="feature-copy">
@@ -206,7 +206,7 @@ export default function Home() {
             <a href="#contact">О программе <span aria-hidden="true">↗</span></a>
           </div>
           <div className="feature-visual">
-            <Image src="/images/hair-detail-2024.jpg" alt="Пряди и материалы для работы с волосами" width={853} height={1280} sizes="(max-width: 820px) 100vw, 58vw" />
+            <img src="/images/hair-detail-2024.jpg" alt="Пряди и материалы для работы с волосами" width={853} height={1280} loading="lazy" decoding="async" />
             <span>HAIR / 02</span>
           </div>
         </article>
@@ -222,15 +222,15 @@ export default function Home() {
 
         <div className="contact-sheet">
           <figure className="sheet-a">
-            <Image src="/images/student-02.jpg" alt="Выпускница Beauty Detali School с дипломом" width={768} height={1024} sizes="(max-width: 820px) 50vw, 34vw" />
+            <img src="/images/student-02.jpg" alt="Выпускница Beauty Detali School с дипломом" width={768} height={1024} loading="lazy" decoding="async" />
             <figcaption>OUTCOME_2406 / 01</figcaption>
           </figure>
           <figure className="sheet-b">
-            <Image src="/images/process-hands-2025.jpg" alt="Ученицы отрабатывают технику на моделях" width={3024} height={4032} sizes="(max-width: 820px) 50vw, 42vw" />
+            <img src="/images/process-hands-2025.jpg" alt="Ученицы отрабатывают технику на моделях" width={3024} height={4032} loading="lazy" decoding="async" />
             <figcaption>PRACTICE_2506 / 02</figcaption>
           </figure>
           <figure className="sheet-c">
-            <Image src="/images/classroom-practice-2025.jpg" alt="Учебная группа Beauty Detali School на практике" width={960} height={1280} sizes="(max-width: 820px) 50vw, 25vw" />
+            <img src="/images/classroom-practice-2025.jpg" alt="Учебная группа Beauty Detali School на практике" width={960} height={1280} loading="lazy" decoding="async" />
             <figcaption>CLASS_2506 / 03</figcaption>
           </figure>
           <blockquote>
