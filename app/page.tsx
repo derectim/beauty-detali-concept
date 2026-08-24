@@ -2,6 +2,8 @@
 import MobileNav from "./mobile-nav";
 import BackstageVideo from "./backstage-video";
 
+const assetPath = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 const programs = [
   { index: "01", title: "Парикмахер", meta: "Стрижка · укладка · форма" },
   { index: "02", title: "Колорист", meta: "Цвет · формулы · сложные техники" },
@@ -99,7 +101,7 @@ export default function Home() {
 
         <figure className="hero-photo">
           <img
-            src="/images/hero-practice-2025.jpg"
+            src={assetPath("/images/hero-practice-2025.jpg")}
             alt="Преподаватель помогает ученице отработать технику на модели"
             width={3024}
             height={4032}
@@ -185,7 +187,7 @@ export default function Home() {
 
         <article className="feature feature-nail">
           <div className="feature-visual">
-            <img src="/images/mentor-practice-2025.jpg" alt="Преподаватель показывает технику ученице на практике" width={3024} height={4032} loading="lazy" decoding="async" />
+            <img src={assetPath("/images/mentor-practice-2025.jpg")} alt="Преподаватель показывает технику ученице на практике" width={3024} height={4032} loading="lazy" decoding="async" />
             <span>NAIL / 01</span>
           </div>
           <div className="feature-copy">
@@ -206,7 +208,7 @@ export default function Home() {
             <a href="#contact">О программе <span aria-hidden="true">↗</span></a>
           </div>
           <div className="feature-visual">
-            <img src="/images/hair-detail-2024.jpg" alt="Пряди и материалы для работы с волосами" width={853} height={1280} loading="lazy" decoding="async" />
+            <img src={assetPath("/images/hair-detail-2024.jpg")} alt="Пряди и материалы для работы с волосами" width={853} height={1280} loading="lazy" decoding="async" />
             <span>HAIR / 02</span>
           </div>
         </article>
@@ -222,15 +224,15 @@ export default function Home() {
 
         <div className="contact-sheet">
           <figure className="sheet-a">
-            <img src="/images/student-02.jpg" alt="Выпускница Beauty Detali School с дипломом" width={768} height={1024} loading="lazy" decoding="async" />
+            <img src={assetPath("/images/student-02.jpg")} alt="Выпускница Beauty Detali School с дипломом" width={768} height={1024} loading="lazy" decoding="async" />
             <figcaption>OUTCOME_2406 / 01</figcaption>
           </figure>
           <figure className="sheet-b">
-            <img src="/images/process-hands-2025.jpg" alt="Ученицы отрабатывают технику на моделях" width={3024} height={4032} loading="lazy" decoding="async" />
+            <img src={assetPath("/images/process-hands-2025.jpg")} alt="Ученицы отрабатывают технику на моделях" width={3024} height={4032} loading="lazy" decoding="async" />
             <figcaption>PRACTICE_2506 / 02</figcaption>
           </figure>
           <figure className="sheet-c">
-            <img src="/images/classroom-practice-2025.jpg" alt="Учебная группа Beauty Detali School на практике" width={960} height={1280} loading="lazy" decoding="async" />
+            <img src={assetPath("/images/classroom-practice-2025.jpg")} alt="Учебная группа Beauty Detali School на практике" width={960} height={1280} loading="lazy" decoding="async" />
             <figcaption>CLASS_2506 / 03</figcaption>
           </figure>
           <blockquote>
