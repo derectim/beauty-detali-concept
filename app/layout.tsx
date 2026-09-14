@@ -22,13 +22,15 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: "/",
     siteName: "Beauty Detali School",
-    title: "Профессия крупным планом — Beauty Detali School",
-    description: "Школа beauty-профессий с практическим обучением в Санкт-Петербурге.",
+    title: "Профессия, в которой видно вас — Beauty Detali School",
+    description: "Практическая школа beauty-профессий в Санкт-Петербурге: 30+ программ, две площадки и обучение на моделях.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Beauty Detali School — школа beauty-профессий в Санкт-Петербурге" }],
   },
   twitter: {
-    card: "summary",
-    title: "Профессия крупным планом — Beauty Detali School",
-    description: "Школа beauty-профессий с практическим обучением в Санкт-Петербурге.",
+    card: "summary_large_image",
+    title: "Профессия, в которой видно вас — Beauty Detali School",
+    description: "Практическая школа beauty-профессий в Санкт-Петербурге.",
+    images: ["/og.png"],
   },
   robots: isGitHubPages
     ? {

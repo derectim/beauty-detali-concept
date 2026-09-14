@@ -1,29 +1,49 @@
 /* eslint-disable @next/next/no-img-element */
-import MobileNav from "./mobile-nav";
 import BackstageVideo from "./backstage-video";
+import MobileNav from "./mobile-nav";
 
 const assetPath = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
 
-const programs = [
-  { index: "01", title: "Парикмахер", meta: "Стрижка · укладка · форма" },
-  { index: "02", title: "Колорист", meta: "Цвет · формулы · сложные техники" },
-  { index: "03", title: "Nail-мастер", meta: "Маникюр · педикюр · smart" },
-  { index: "04", title: "Визажист", meta: "Макияж · образ · съёмка" },
-  { index: "05", title: "Brow & Lash", meta: "Брови · ресницы · взгляд" },
-  { index: "06", title: "Permanent", meta: "Форма · пигмент · техника" },
+const directions = [
+  {
+    title: "Волосы",
+    subtitle: "Парикмахер · колорист · стилист",
+    text: "Форма, цвет и техники, с которыми начинают работать уверенно.",
+    image: "/images/hair-detail-2024.jpg",
+    alt: "Профессиональная палитра оттенков волос для обучения колористике",
+    className: "direction-hair",
+  },
+  {
+    title: "Nail",
+    subtitle: "Маникюр · педикюр · наращивание",
+    text: "От постановки руки до аккуратной салонной работы и портфолио.",
+    image: "/images/nail-detail-2026.jpg",
+    alt: "Работа выпускницы курса маникюра Beauty Detali School",
+    className: "direction-nail",
+  },
+  {
+    title: "Образ",
+    subtitle: "Визаж · brow & lash · permanent",
+    text: "Профессии, в которых важны чувство формы, точность и внимание к человеку.",
+    image: "/images/student-03.jpg",
+    alt: "Выпускница Beauty Detali School с преподавателем",
+    className: "direction-face",
+  },
 ];
 
-const method = [
-  { index: "01", title: "Смотрите", text: "Преподаватель показывает технику крупным планом и объясняет логику каждого движения." },
-  { index: "02", title: "Повторяете", text: "Сразу переносите увиденное в практику — с инструментом в руках, а не в конспекте." },
-  { index: "03", title: "Работаете", text: "Отрабатываете навык на моделях и получаете точную обратную связь по результату." },
-  { index: "04", title: "Выходите", text: "Собираете портфолио, документ об обучении и следующий профессиональный шаг." },
+const benefits = [
+  { title: "Практика с первых занятий", text: "Смотрите показ преподавателя и сразу переносите технику в работу на модели." },
+  { title: "Обратная связь по каждой работе", text: "Корректируете детали, от которых зависит качество и уверенность результата." },
+  { title: "Преподаватели-практики", text: "Учитесь у мастеров, которые каждый день работают в beauty-индустрии." },
+  { title: "Портфолио и документ", text: "Завершаете программу с выполненными работами и понятным следующим шагом." },
 ];
+
+const steps = ["Смотрите", "Пробуете", "Корректируете", "Закрепляете"];
 
 const teachers = [
-  { index: "01", name: "Светлана Гаврилова", role: "Преподаватель-практик" },
-  { index: "02", name: "Анастасия Филиппова", role: "Преподаватель-практик" },
-  { index: "03", name: "Елена Якупова", role: "Преподаватель-практик" },
+  { name: "Светлана Гаврилова", role: "преподаватель-практик" },
+  { name: "Анастасия Филиппова", role: "преподаватель-практик" },
+  { name: "Елена Якупова", role: "преподаватель-практик" },
 ];
 
 const structuredData = {
@@ -57,246 +77,182 @@ function DetaliLogo() {
   );
 }
 
+function SectionIntro({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string }) {
+  return (
+    <div className="section-intro">
+      <p className="section-eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      {text ? <p>{text}</p> : null}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 
-      <header className="topbar">
-        <a className="detali-logo" href="#top" aria-label="Beauty Detali School — на главную">
-          <DetaliLogo />
-        </a>
+      <header className="soft-header">
+        <a className="detali-logo" href="#top" aria-label="Beauty Detali School — на главную"><DetaliLogo /></a>
         <nav aria-label="Основная навигация">
-          <a href="#programs">Профессии</a>
-          <a href="#method">Метод</a>
-          <a href="#people">Люди</a>
-          <a href="#locations">Адреса</a>
+          <a href="#programs">Направления</a>
+          <a href="#method">Как учим</a>
+          <a href="#people">О школе</a>
+          <a href="#locations">Контакты</a>
         </nav>
-        <div className="topbar-meta">
-          <span>СПБ · 2026</span>
-          <a href="#contact">Записаться <b aria-hidden="true">↗</b></a>
-        </div>
+        <a className="soft-header-action" href="#contact">Подобрать программу <span aria-hidden="true">→</span></a>
         <MobileNav />
       </header>
 
-      <section className="new-hero" id="top">
-        <div className="hero-rail" aria-hidden="true">
-          <span>BEAUTY EDUCATION</span>
-          <span>59.9311° N</span>
-          <span>30.3609° E</span>
-        </div>
-
-        <div className="hero-title">
-          <p className="micro-label"><span>01</span> ШКОЛА СТИЛИСТОВ · САНКТ-ПЕТЕРБУРГ</p>
-          <h1>
-            <span>ПРОФЕССИЯ</span>
-            <span className="title-shift">КРУПНЫМ</span>
-            <span>ПЛАНОМ</span>
-          </h1>
-          <div className="hero-description">
-            <p>Не наблюдать за мастерством. Осваивать его — движение за движением, модель за моделью.</p>
-            <a className="square-link" href="#programs">Выбрать профессию <span aria-hidden="true">↘</span></a>
+      <section className="soft-hero" id="top">
+        <div className="soft-hero-copy">
+          <p className="soft-eyebrow"><span aria-hidden="true" /> Практическая beauty-школа · Санкт-Петербург</p>
+          <h1>Профессия,<br />в которой<br />видно <em>вас</em></h1>
+          <p className="soft-hero-lead">Освойте востребованную beauty-профессию с нуля — на живой практике, рядом с преподавателем и с документом об обучении.</p>
+          <div className="soft-hero-actions">
+            <a className="soft-primary" href="#programs">Выбрать направление <span aria-hidden="true">→</span></a>
+            <a className="soft-secondary" href="#contact">Прийти на экскурсию</a>
           </div>
+          <dl className="soft-proof-list">
+            <div><dt>30+</dt><dd>программ обучения</dd></div>
+            <div><dt>2</dt><dd>школы в Петербурге</dd></div>
+            <div><dt>Практика</dt><dd>на моделях с первых занятий</dd></div>
+          </dl>
         </div>
 
-        <figure className="hero-photo">
-          <img
-            src={assetPath("/images/hero-practice-2025.jpg")}
-            alt="Преподаватель помогает ученице отработать технику на модели"
-            width={3024}
-            height={4032}
-            fetchPriority="high"
-            decoding="async"
-          />
-          <figcaption>
-            <span>DETALI / PROCESS 01</span>
-            <span>НАСТАВНИК + УЧЕНИЦА</span>
-          </figcaption>
-          <div className="focus-frame" aria-hidden="true"><span>КОРРЕКЦИЯ 01:1</span></div>
-        </figure>
-
-        <div className="hero-data">
-          <div><strong>30+</strong><span>программ</span></div>
-          <div><strong>02</strong><span>площадки</span></div>
-          <div><strong>01:1</strong><span>обратная связь</span></div>
-          <div><strong>REAL</strong><span>практика</span></div>
+        <div className="soft-hero-visual">
+          <figure className="soft-hero-photo">
+            <img src={assetPath("/images/student-03.jpg")} alt="Выпускница Beauty Detali School с преподавателем после обучения" width={768} height={1024} fetchPriority="high" decoding="async" />
+          </figure>
+          <div className="soft-hero-note"><span>Результат обучения</span><strong>Навык. Практика. Уверенный старт.</strong></div>
+          <div className="soft-hero-badge" aria-label="Обучение по лицензии"><b>Лицензия</b><span>и документы об обучении</span></div>
         </div>
       </section>
 
-      <div className="discipline-strip" aria-label="Направления школы">
-        <span>HAIR</span><b aria-hidden="true">×</b><span>COLOR</span><b aria-hidden="true">×</b><span>NAIL</span><b aria-hidden="true">×</b><span>MAKE-UP</span><b aria-hidden="true">×</b><span>BROW</span><b aria-hidden="true">×</b><span>PERMANENT</span>
-      </div>
-
-      <section className="programs-section" id="programs">
-        <div className="programs-aside">
-          <p className="micro-label"><span>02</span> НАПРАВЛЕНИЯ</p>
-          <h2>Выберите<br />не курс.<br />Роль.</h2>
-          <p>Сайт ведёт не через бесконечный каталог, а через будущую профессию и уровень подготовки.</p>
-          <a className="text-link" href="#contact">Помочь с выбором <span aria-hidden="true">→</span></a>
+      <section className="directions-section page-section" id="programs">
+        <div className="section-heading-row">
+          <SectionIntro eyebrow="Направления" title="Какую профессию вы хотите освоить?" text="Начните с нуля или выберите программу для профессионального роста." />
+          <a className="inline-link" href="#contact">Все 30+ программ <span aria-hidden="true">→</span></a>
         </div>
-        <div className="program-list">
-          {programs.map((program) => (
-            <a href="#featured" className="program-row" key={program.index}>
-              <span>{program.index}</span>
-              <strong>{program.title}</strong>
-              <small>{program.meta}</small>
-              <b aria-hidden="true">↗</b>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section className="manifesto" id="method">
-        <div className="manifesto-top">
-          <p className="micro-label dark-label"><span>03</span> МЕТОД DETALI</p>
-          <h2>СНАЧАЛА —<br />РУКАМИ.<br />ПОТОМ —<br />УВЕРЕННО.</h2>
-          <p>Теория занимает своё место. Главную роль получает практика: наблюдение, повторение, коррекция, результат.</p>
-        </div>
-        <div className="method-grid">
-          {method.map((item) => (
-            <article key={item.index}>
-              <span>{item.index}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
+        <div className="direction-grid">
+          {directions.map((direction) => (
+            <article className={`direction-card ${direction.className}`} key={direction.title}>
+              <figure><img src={assetPath(direction.image)} alt={direction.alt} width={853} height={1280} loading="lazy" decoding="async" /></figure>
+              <div>
+                <p>{direction.subtitle}</p>
+                <h3>{direction.title}</h3>
+                <span>{direction.text}</span>
+                <a href="#contact" aria-label={`Подобрать программу: ${direction.title}`}>Подобрать программу <b aria-hidden="true">→</b></a>
+              </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="film-section" aria-labelledby="film-title">
-        <div className="film-copy">
-          <p className="micro-label"><span>03A</span> SCHOOL TOUR · 00:20</p>
-          <h2 id="film-title">Школа<br />изнутри.</h2>
-          <div>
-            <p>Рабочие места, свет, оборудование и пространство, в котором теория сразу становится практикой.</p>
-            <span>ВИДЕО БЕЗ ЗВУКА · СПБ</span>
-          </div>
+      <section className="popular-section page-section" aria-labelledby="popular-title">
+        <div className="popular-heading">
+          <p className="section-eyebrow">Популярный старт</p>
+          <h2 id="popular-title">Две программы — два масштаба входа в профессию</h2>
         </div>
-        <div className="film-stage">
-          <span>SPACE / 01</span>
-          <BackstageVideo />
-          <b>MUTED · LOOP</b>
-        </div>
-      </section>
-
-      <section className="featured-section" id="featured">
-        <div className="featured-heading">
-          <p className="micro-label"><span>04</span> В ФОКУСЕ</p>
-          <h2>Две программы.<br />Два масштаба старта.</h2>
-        </div>
-
-        <article className="feature feature-nail">
-          <div className="feature-visual">
-            <img src={assetPath("/images/mentor-practice-2025.jpg")} alt="Преподаватель показывает технику ученице на практике" width={3024} height={4032} loading="lazy" decoding="async" />
-            <span>NAIL / 01</span>
-          </div>
-          <div className="feature-copy">
-            <span className="feature-index">01 — БАЗОВЫЙ</span>
+        <div className="popular-grid">
+          <article className="popular-card popular-nail">
+            <div className="popular-card-top"><span>Для начинающих</span><span>5 дней</span></div>
             <h3>Топ-мастер<br />с нуля</h3>
-            <p>Для тех, кто хочет освоить профессию мастера маникюра и начать работать уверенно и аккуратно.</p>
-            <dl><div><dt>Срок</dt><dd>5 дней</dd></div><div><dt>Стоимость</dt><dd>30 000 ₽</dd></div></dl>
-            <a href="#contact">О программе <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-
-        <article className="feature feature-hair">
-          <div className="feature-copy">
-            <span className="feature-index">02 — ПРОФЕССИЯ</span>
+            <p>Интенсивный старт в nail-профессии: техника, практика и первые работы.</p>
+            <dl><div><dt>Стоимость</dt><dd>30 000 ₽</dd></div><div><dt>Формат</dt><dd>очно · практика</dd></div></dl>
+            <a href="#contact">Получить программу <span aria-hidden="true">→</span></a>
+          </article>
+          <article className="popular-card popular-hair">
+            <div className="popular-card-top"><span>Большая профессия</span><span>256 часов</span></div>
             <h3>Парикмахер-<br />стилист</h3>
-            <p>Большая программа для системного старта: инструмент, форма, укладка, работа с клиентом и практика.</p>
-            <dl><div><dt>Объём</dt><dd>256 часов</dd></div><div><dt>Стоимость</dt><dd>144 000 ₽</dd></div></dl>
-            <a href="#contact">О программе <span aria-hidden="true">↗</span></a>
+            <p>Системная программа: стрижка, форма, укладка, работа с клиентом и практика.</p>
+            <dl><div><dt>Стоимость</dt><dd>144 000 ₽</dd></div><div><dt>Результат</dt><dd>профессия с нуля</dd></div></dl>
+            <a href="#contact">Получить программу <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section className="choice-section page-section">
+        <div className="choice-card">
+          <div><p className="section-eyebrow">Поможем с выбором</p><h2>Не нужно разбираться во всех 30 программах</h2></div>
+          <div className="choice-copy"><p>Расскажите, что вам интересно и какой результат нужен. Мы сравним подходящие варианты по срокам, содержанию и стоимости.</p><a className="soft-primary" href="#contact">Помочь мне с выбором <span aria-hidden="true">→</span></a></div>
+          <div className="choice-tags" aria-label="Варианты обучения"><span>Начать с нуля</span><span>Повысить квалификацию</span><span>Выбрать новую специализацию</span></div>
+        </div>
+      </section>
+
+      <section className="about-section page-section" id="method">
+        <div className="about-layout">
+          <div className="about-copy">
+            <SectionIntro eyebrow="Почему Beauty Detali" title="От интереса — к уверенной работе" text="В школе всё устроено вокруг практики: увидеть технику, повторить её, получить точную коррекцию и закрепить навык." />
+            <div className="benefit-list">
+              {benefits.map((benefit, index) => (
+                <article key={benefit.title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{benefit.title}</h3><p>{benefit.text}</p></div></article>
+              ))}
+            </div>
           </div>
-          <div className="feature-visual">
-            <img src={assetPath("/images/hair-detail-2024.jpg")} alt="Пряди и материалы для работы с волосами" width={853} height={1280} loading="lazy" decoding="async" />
-            <span>HAIR / 02</span>
-          </div>
-        </article>
-
-        <a className="catalog-line" href="#contact"><span>Смотреть все 30+ программ</span><b aria-hidden="true">→</b></a>
-      </section>
-
-      <section className="people-section" id="people">
-        <div className="people-heading">
-          <p className="micro-label light-label"><span>05</span> ЛЮДИ DETALI</p>
-          <h2>Не идеальные<br />картинки.<br />Реальный рост.</h2>
-        </div>
-
-        <div className="contact-sheet">
-          <figure className="sheet-a">
-            <img src={assetPath("/images/student-02.jpg")} alt="Выпускница Beauty Detali School с дипломом" width={768} height={1024} loading="lazy" decoding="async" />
-            <figcaption>OUTCOME_2406 / 01</figcaption>
+          <figure className="about-photo">
+            <img src={assetPath("/images/classroom-practice-2025.jpg")} alt="Ученицы Beauty Detali School работают в оборудованном классе" width={960} height={1280} loading="lazy" decoding="async" />
+            <figcaption><strong>Практика в классе</strong><span>оборудование и материалы уже на месте</span></figcaption>
           </figure>
-          <figure className="sheet-b">
-            <img src={assetPath("/images/process-hands-2025.jpg")} alt="Ученицы отрабатывают технику на моделях" width={3024} height={4032} loading="lazy" decoding="async" />
-            <figcaption>PRACTICE_2506 / 02</figcaption>
-          </figure>
-          <figure className="sheet-c">
-            <img src={assetPath("/images/classroom-practice-2025.jpg")} alt="Учебная группа Beauty Detali School на практике" width={960} height={1280} loading="lazy" decoding="async" />
-            <figcaption>CLASS_2506 / 03</figcaption>
-          </figure>
-          <blockquote>
-            <span>“</span>
-            <p>Здесь хочется учиться, расти и возвращаться на повышение.</p>
-            <footer>Диля Хаджиева · выпускница</footer>
-          </blockquote>
-        </div>
-
-        <div className="teachers-table">
-          <p className="table-title">ПРЕПОДАВАТЕЛИ / SELECTED</p>
-          {teachers.map((teacher) => (
-            <article key={teacher.index}>
-              <span>{teacher.index}</span>
-              <h3>{teacher.name}</h3>
-              <p>{teacher.role}</p>
-              <b aria-hidden="true">↗</b>
-            </article>
-          ))}
         </div>
       </section>
 
-      <section className="location-section" id="locations">
-        <div className="location-heading">
-          <p className="micro-label"><span>06</span> САНКТ-ПЕТЕРБУРГ</p>
-          <h2>Две точки<br />входа в<br />профессию.</h2>
+      <section className="practice-section page-section" aria-labelledby="practice-title">
+        <div className="practice-visual">
+          <figure><img src={assetPath("/images/mentor-practice-2025.jpg")} alt="Преподаватель помогает ученице отработать технику" width={3024} height={4032} loading="lazy" decoding="async" /></figure>
+          <div className="practice-caption"><span>Работа рядом с наставником</span><b>Точная коррекция в моменте</b></div>
         </div>
-        <article>
-          <span>01 / ЦЕНТР</span>
-          <h3>Владимирский<br />проспект, 19</h3>
-          <p>м. Владимирская · Достоевская</p>
-          <div><a href="tel:+79119213019">+7 911 921-30-19</a><a href="https://yandex.ru/maps/org/detali_beauty_school/81869744841/" target="_blank" rel="noreferrer">Маршрут ↗</a></div>
-        </article>
-        <article>
-          <span>02 / ЛАДОЖСКАЯ</span>
-          <h3>Заневский<br />проспект, 71</h3>
-          <p>м. Ладожская</p>
-          <div><a href="tel:+79111652731">+7 911 165-27-31</a><a href="https://yandex.ru/maps/org/shkola_masterov_krasivogo_biznesa/232987482017/" target="_blank" rel="noreferrer">Маршрут ↗</a></div>
-        </article>
+        <div className="practice-copy">
+          <p className="section-eyebrow">Как проходит обучение</p>
+          <h2 id="practice-title">Навык появляется в работе</h2>
+          <p>Преподаватель показывает технику крупным планом. Вы повторяете, отрабатываете её на модели и получаете обратную связь по результату.</p>
+          <ol>{steps.map((step, index) => <li key={step}><span>{String(index + 1).padStart(2, "0")}</span><b>{step}</b></li>)}</ol>
+        </div>
       </section>
 
-      <section className="final-contact" id="contact">
-        <div className="contact-title">
-          <p className="micro-label dark-label"><span>07</span> ПЕРВЫЙ ШАГ</p>
-          <h2>ПОКАЖЕМ<br />ШКОЛУ.<br />ПОДБЕРЁМ<br />ПРОФЕССИЮ.</h2>
+      <section className="inside-section page-section" aria-labelledby="inside-title">
+        <div className="inside-copy"><p className="section-eyebrow">Школа изнутри</p><h2 id="inside-title">Посмотрите, где теория становится практикой</h2><p>Две оборудованные площадки в Санкт-Петербурге, рабочие места для учеников и пространство, в которое можно прийти до записи.</p><a className="soft-secondary" href="#locations">Выбрать площадку <span aria-hidden="true">→</span></a></div>
+        <div className="inside-video"><BackstageVideo /><span>Видео без звука · 00:19</span></div>
+        <div className="inside-facts"><div><strong>2</strong><span>площадки в городе</span></div><div><strong>30+</strong><span>учебных программ</span></div><div><strong>очно</strong><span>практика и поддержка</span></div></div>
+      </section>
+
+      <section className="people-section page-section" id="people">
+        <div className="section-heading-row"><SectionIntro eyebrow="Люди Beauty Detali" title="Рядом — практики, которые видят детали" text="Преподаватели объясняют логику техники, корректируют работу и помогают увидеть профессиональный результат." /></div>
+        <div className="people-layout">
+          <figure className="graduate-card graduate-main"><img src={assetPath("/images/student-02.jpg")} alt="Выпускница Beauty Detali School с дипломом" width={768} height={1044} loading="lazy" decoding="async" /><figcaption><strong>Документ об обучении</strong><span>и следующий профессиональный шаг</span></figcaption></figure>
+          <figure className="graduate-card graduate-second"><img src={assetPath("/images/student-01.jpg")} alt="Выпускник Beauty Detali School с преподавателями" width={768} height={1024} loading="lazy" decoding="async" /><figcaption><strong>Результат, которым хочется делиться</strong></figcaption></figure>
+          <blockquote><p>«Здесь хочется учиться, расти и возвращаться на повышение».</p><footer>Диля Хаджиева · выпускница</footer></blockquote>
+          <div className="teacher-list"><p>Преподаватели</p>{teachers.map((teacher) => <article key={teacher.name}><h3>{teacher.name}</h3><span>{teacher.role}</span></article>)}</div>
         </div>
-        <form>
-          <label><span>ИМЯ</span><input type="text" name="name" placeholder="Как к вам обращаться?" autoComplete="name" /></label>
-          <label><span>ТЕЛЕФОН</span><input type="tel" name="phone" placeholder="+7 ___ ___-__-__" autoComplete="tel" /></label>
-          <label><span>НАПРАВЛЕНИЕ</span><select name="direction" defaultValue=""><option value="" disabled>Выберите профессию</option><option>Парикмахер</option><option>Колорист</option><option>Nail-мастер</option><option>Визажист</option><option>Другое</option></select></label>
+      </section>
+
+      <section className="locations-section page-section" id="locations">
+        <SectionIntro eyebrow="Санкт-Петербург" title="Две площадки — выбирайте удобную" text="Можно приехать на экскурсию, увидеть классы и познакомиться со школой до начала обучения." />
+        <div className="location-grid">
+          <article><span>Центр</span><h3>Владимирский<br />проспект, 19</h3><p>м. Владимирская · Достоевская</p><div><a href="tel:+79119213019">+7 911 921-30-19</a><a href="https://yandex.ru/maps/org/detali_beauty_school/81869744841/" target="_blank" rel="noreferrer">Построить маршрут →</a></div></article>
+          <article><span>Ладожская</span><h3>Заневский<br />проспект, 71</h3><p>м. Ладожская</p><div><a href="tel:+79111652731">+7 911 165-27-31</a><a href="https://yandex.ru/maps/org/shkola_masterov_krasivogo_biznesa/232987482017/" target="_blank" rel="noreferrer">Построить маршрут →</a></div></article>
+        </div>
+      </section>
+
+      <section className="contact-section page-section" id="contact">
+        <div className="contact-copy"><p className="section-eyebrow">Первый шаг</p><h2>Начните с программы, которая подходит именно вам</h2><p>Оставьте контакты — уточним вашу цель, ответим на вопросы и предложим подходящие варианты обучения.</p><div><span>Или позвоните</span><a href="tel:+79119213019">+7 911 921-30-19</a></div></div>
+        <form className="contact-form">
+          <label><span>Ваше имя</span><input type="text" name="name" placeholder="Как к вам обращаться?" autoComplete="name" /></label>
+          <label><span>Телефон</span><input type="tel" name="phone" placeholder="+7 ___ ___-__-__" autoComplete="tel" /></label>
+          <label><span>Направление</span><select name="direction" defaultValue=""><option value="">Пока не знаю — нужна помощь</option><option>Волосы</option><option>Nail</option><option>Визаж, brow & lash</option><option>Permanent</option></select></label>
           <label className="checkline"><input type="checkbox" defaultChecked /><span>Согласен(а) с политикой конфиденциальности</span></label>
-          <button type="button">Записаться на знакомство <span aria-hidden="true">↗</span></button>
-          <p>Или позвоните: <a href="tel:+79119213019">+7 911 921-30-19</a></p>
+          <button type="button">Подобрать программу <span aria-hidden="true">→</span></button>
         </form>
       </section>
 
-      <footer className="footer">
-        <a className="detali-logo detali-logo-inverse" href="#top" aria-label="Beauty Detali School — на главную"><DetaliLogo /></a>
-        <p>Школа мастеров красивого бизнеса<br />Санкт-Петербург</p>
-        <div><a href="https://vk.com/beauty_detali_school" target="_blank" rel="noreferrer">VK ↗</a><a href="mailto:beauty.detali.school@mail.ru">EMAIL ↗</a><a href="https://school.sk12m.ru/privacy">PRIVACY ↗</a></div>
-        <span>© {new Date().getFullYear()} · ИП ГОРОХОВА Н.В.</span>
+      <footer className="soft-footer">
+        <a className="detali-logo" href="#top" aria-label="Beauty Detali School — на главную"><DetaliLogo /></a>
+        <p>Школа beauty-профессий<br />в Санкт-Петербурге</p>
+        <div><a href="https://vk.com/beauty_detali_school" target="_blank" rel="noreferrer">VK</a><a href="mailto:beauty.detali.school@mail.ru">Email</a><a href="https://school.sk12m.ru/privacy">Политика</a></div>
+        <span>© {new Date().getFullYear()} · Beauty Detali School</span>
       </footer>
 
-      <a className="mobile-action" href="#contact">Записаться <span aria-hidden="true">↗</span></a>
+      <a className="mobile-action" href="#contact">Подобрать программу <span aria-hidden="true">→</span></a>
     </main>
   );
 }
