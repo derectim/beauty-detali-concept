@@ -36,3 +36,6 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+
+# Unused client-supplied font originals stay local.
+/app/fonts/leto/

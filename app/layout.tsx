@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { indexingEnabled, schoolSiteUrl } from "./search-config";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://school.sk12m.ru"),
+  metadataBase: new URL(schoolSiteUrl),
   title: {
-    default: "Beauty Detali School — школа мастеров красивого бизнеса в Санкт-Петербурге",
+    default: "Школа парикмахеров и бьюти-профессий в СПб — Beauty Detali School",
     template: "%s — Beauty Detali School",
   },
-  description: "Курсы beauty-профессий в центре Санкт-Петербурга. Техника, сервис и личный бренд с действующими стилистами. Познакомьтесь с Beauty Detali School на бесплатном занятии.",
+  description: "Курсы парикмахеров, колористики, маникюра, визажа, бровей и ресниц в Санкт-Петербурге. Beauty Detali School — в минуте от метро Владимирская. Бесплатное пробное занятие.",
   icons: {
     icon: `${basePath}/favicon.svg`,
   },
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   // Enable indexing only when the approved site replaces the production school.
-  robots: { index: false, follow: false },
+  robots: { index: indexingEnabled, follow: indexingEnabled },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { schoolSiteUrl } from "./search-config";
 
 export const dynamic = "force-static";
 
@@ -8,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://school.sk12m.ru/sitemap.xml",
-    host: "https://school.sk12m.ru",
+    sitemap: `${schoolSiteUrl}/sitemap.xml`,
+    host: schoolSiteUrl,
   };
 }

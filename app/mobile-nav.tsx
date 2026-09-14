@@ -3,22 +3,26 @@
 import { useEffect, useRef, useState } from "react";
 
 const items = [
-  { index: "01", label: "Обучение", href: "#programs" },
-  { index: "02", label: "Подход Detali", href: "#method" },
-  { index: "03", label: "О бренде", href: "#people" },
-  { index: "04", label: "Контакты", href: "#locations" },
-  { index: "→", label: "Бесплатное занятие", href: "#contact" },
+  { label: "Обучение", href: "#programs" },
+  { label: "Как учим", href: "#method" },
+  { label: "О школе", href: "#people" },
+  { label: "Контакты", href: "#locations" },
+  { label: "Бесплатное занятие", href: "#contact" },
 ];
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
 
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
     };
     const closeOutside = (event: PointerEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
@@ -33,8 +37,15 @@ export default function MobileNav() {
   }, [open]);
 
   return (
-    <div className={`mobile-nav${open ? " is-open" : ""}`} ref={rootRef}>
+    <div
+      className={`mobile-nav${open ? " is-open" : ""}`}
+      ref={rootRef}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+      }}
+    >
       <button
+        ref={toggleRef}
         className="mobile-nav-toggle"
         type="button"
         aria-label={open ? "Закрыть меню" : "Открыть меню"}
@@ -48,7 +59,6 @@ export default function MobileNav() {
       <div id="mobile-menu" role="navigation" aria-label="Мобильная навигация" hidden={!open}>
         {items.map((item) => (
           <a href={item.href} key={item.href} onClick={() => setOpen(false)}>
-            <b>{item.index}</b>
             <span>{item.label}</span>
           </a>
         ))}
