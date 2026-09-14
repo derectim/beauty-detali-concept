@@ -33,6 +33,7 @@ export default function BackstageVideo() {
       muted
       loop
       playsInline
+      controls
       preload="metadata"
       poster={assetPath("/images/classroom-practice-2025.jpg")}
       aria-label="Короткое видео пространства Beauty Detali School без звука"

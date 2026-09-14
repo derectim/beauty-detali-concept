@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 
 const items = [
-  { index: "01", label: "Направления", href: "#programs" },
-  { index: "02", label: "Как учим", href: "#method" },
-  { index: "03", label: "О школе", href: "#people" },
+  { index: "01", label: "Обучение", href: "#programs" },
+  { index: "02", label: "Подход Detali", href: "#method" },
+  { index: "03", label: "О бренде", href: "#people" },
   { index: "04", label: "Контакты", href: "#locations" },
-  { index: "→", label: "Записаться", href: "#contact" },
+  { index: "→", label: "Бесплатное занятие", href: "#contact" },
 ];
 
 export default function MobileNav() {

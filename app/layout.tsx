@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const isGitHubPages = process.env.GITHUB_PAGES === "true";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://school.sk12m.ru"),
   title: {
-    default: "Beauty Detali School — школа beauty-профессий в Санкт-Петербурге",
+    default: "Beauty Detali School — школа мастеров красивого бизнеса в Санкт-Петербурге",
     template: "%s — Beauty Detali School",
   },
-  description: "Практическое обучение парикмахеров, колористов, nail-мастеров, визажистов и других beauty-специалистов в Санкт-Петербурге.",
+  description: "Курсы beauty-профессий в центре Санкт-Петербурга. Техника, сервис и личный бренд с действующими стилистами. Познакомьтесь с Beauty Detali School на бесплатном занятии.",
   icons: {
     icon: `${basePath}/favicon.svg`,
   },
@@ -32,27 +31,14 @@ export const metadata: Metadata = {
     description: "Практическая школа beauty-профессий в Санкт-Петербурге.",
     images: ["/og.png"],
   },
-  robots: isGitHubPages
-    ? {
-        index: false,
-        follow: false,
-      }
-    : {
-        index: true,
-        follow: true,
-        googleBot: {
-          index: true,
-          follow: true,
-          "max-image-preview": "large",
-          "max-snippet": -1,
-          "max-video-preview": -1,
-        },
-      },
+  // Enable indexing only when the approved site replaces the production school.
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru" dir="ltr">
+    <html lang="ru" dir="ltr" data-theme="dark" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem('detali-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}` }} /></head>
       <body>{children}</body>
     </html>
   );
