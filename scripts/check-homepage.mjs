@@ -37,6 +37,12 @@ for (const id of ['programs', 'method', 'people', 'questions', 'contact', 'locat
 assert.match(html, /Где находится Beauty Detali School\?/);
 assert.match(html, /Можно ли сначала прийти на бесплатное занятие\?/);
 assert.match(html, /Владимирский проспект, 19/);
+assert.ok((html.match(/Достоевская/g) || []).length >= 4, 'Both metro stations appear in the hero, FAQ, contacts and metadata');
+assert.match(html, /Владимирский пассаж/);
+assert.match(html, /3-й этаж/);
+assert.match(html, /До 6 человек/);
+assert.match(html, /Расходные материалы от школы/);
+assert.match(html, /Старт и программа под ваш запрос/);
 assert.match(readFileSync(resolve('out/robots.txt'), 'utf8'), /Allow: \/\s/);
 assert.match(readFileSync(resolve('out/sitemap.xml'), 'utf8'), /<loc>https:\/\/school\.sk12m\.ru\/<\/loc>/);
 console.log(JSON.stringify({ status: 'passed', h1: 1, schemaEntities: graph.length, directions: 6, checkedAssets: assets.size, indexing: 'preview-noindex', browserTested: false }));

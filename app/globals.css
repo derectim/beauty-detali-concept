@@ -147,6 +147,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline: 2px solid 
 .practice-figure figcaption { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 15px; padding-top: 18px; font-size: .875rem; letter-spacing: .05em; line-height: 1.6; }
 .practice-figure figcaption span { color: var(--secondary); letter-spacing: 0; }
 .method-copy .section-lead { margin-top: 26px; color: var(--secondary); font-size: 1rem; }
+.method-facts { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 24px; margin: 26px 0 0; }
+.method-facts dt { font-size: 1.125rem; font-weight: 600; line-height: 1.5; }
+.method-facts dd { margin: 5px 0 0; color: var(--secondary); font-size: .875rem; line-height: 1.6; }
 .learning-details { margin-top: 30px; border-top: 1px solid var(--border); }
 .learning-details details { border-bottom: 1px solid var(--border); }
 .learning-details summary { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 24px; list-style: none; cursor: pointer; padding-block: 19px; font: 500 1.75rem/1.15 var(--display); }
