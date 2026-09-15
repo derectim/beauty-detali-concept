@@ -92,11 +92,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline: 2px solid 
 .header-inner > nav a { padding-block: 16px; }
 .header-inner > nav > a:hover,.catalog-nav-entry > a:hover { color: var(--secondary); }
 .header-actions { display: flex; align-items: center; gap: 20px; }
-.theme-toggle { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; padding: 10px; background: transparent; border: 0; }
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex-shrink: 0; width: 148px; min-height: 44px; padding: 10px; background: transparent; border: 0; }
 .theme-toggle:hover { background: var(--hover); }
-.theme-icon-moon { display: none; }
-[data-theme="light"] .theme-icon-sun { display: none; }
-[data-theme="light"] .theme-icon-moon { display: block; }
+.theme-toggle-label { font-size: .875rem; line-height: 1.5; white-space: nowrap; }
+.theme-icon-moon,.theme-label-dark { display: none; }
+[data-theme="light"] .theme-icon-sun,[data-theme="light"] .theme-label-light { display: none; }
+[data-theme="light"] .theme-icon-moon,[data-theme="light"] .theme-label-dark { display: block; }
 .header-cta { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border: 1px solid var(--border); font-size: .875rem; white-space: nowrap; transition: background .2s,color .2s; }
 .header-cta:hover { color: var(--surface); background: var(--text); }
 .mobile-nav { display: none; }
@@ -252,6 +253,9 @@ details[open] .disclosure-mark::after { transform: none; }
   .header-inner > nav,.header-cta { display: none; }
   .brand-name { display: block; }
   .header-actions { margin-left: auto; }
+  .theme-toggle { flex-direction: column; gap: 2px; width: 76px; min-height: 64px; padding: 4px; }
+  .theme-toggle-label { line-height: 1.15; }
+  .theme-toggle-label > span { display: block; }
   .mobile-nav { display: block; }
   .mobile-nav-toggle { display: grid; align-content: center; gap: 6px; width: 44px; height: 44px; padding: 9px; background: transparent; border: 0; }
   .mobile-nav-toggle span { display: block; height: 1px; width: 26px; background: var(--text); transition: transform .2s; }
