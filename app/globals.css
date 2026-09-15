@@ -90,7 +90,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline: 2px solid 
 .brand-name > span { display: block; letter-spacing: .3em; }
 .header-inner > nav { display: flex; flex-wrap: wrap; column-gap: 28px; align-items: center; font-size: .875rem; }
 .header-inner > nav a { padding-block: 16px; }
-.header-inner > nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.header-inner > nav > a:hover,.catalog-nav-entry > a:hover { color: var(--secondary); }
 .header-actions { display: flex; align-items: center; gap: 20px; }
 .theme-toggle { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; padding: 10px; background: transparent; border: 0; }
 .theme-toggle:hover { background: var(--hover); }
@@ -486,8 +486,10 @@ details[open] .disclosure-mark::after { transform: none; }
 .menu-catalog-intro .eyebrow { margin-bottom: 15px; }
 .menu-catalog-intro > .text-link { margin-top: 18px; }
 .menu-direction-links { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 28px; }
-.header-inner .menu-direction-links > a { padding-block: 14px; border-bottom: 1px solid var(--border); text-decoration: none; }
-.menu-direction-links a:hover,.menu-direction-links a[aria-current="page"] { color: var(--secondary); }
+.header-inner .menu-direction-links > a { position: relative; isolation: isolate; padding-block: 14px; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text); }
+.menu-direction-links > a::before { content: ""; position: absolute; inset: 4px -10px; z-index: -1; border-radius: 2px; background: var(--hover); opacity: 0; transition: opacity .16s ease; pointer-events: none; }
+.menu-direction-links > a:hover::before,.menu-direction-links > a:focus-visible::before,.menu-direction-links > a[aria-current="page"]::before { opacity: 1; }
+.header-inner .menu-direction-links > a:focus-visible { outline-offset: 3px; }
 .menu-direction-links span { display: block; font-size: 1rem; line-height: 1.5; }
 .menu-direction-links small { display: block; font-size: .875rem; color: var(--secondary); margin-top: 5px; line-height: 1.5; }
 .mobile-directions > summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 56px; padding-block: 14px; list-style: none; font-size: 1rem; cursor: pointer; }
