@@ -12,7 +12,12 @@ export const metadata: Metadata = {
     template: "%s — Beauty Detali School",
   },
   icons: {
-    icon: `${basePath}/favicon.svg`,
+    icon: [
+      { url: `${basePath}/favicon.ico?v=detali-1`, sizes: "16x16 32x32 48x48" },
+      { url: `${basePath}/favicon-32.png?v=detali-1`, type: "image/png", sizes: "32x32" },
+      { url: `${basePath}/favicon.svg?v=detali-1`, type: "image/svg+xml", sizes: "any" },
+    ],
+    apple: { url: `${basePath}/apple-touch-icon.png?v=detali-1`, sizes: "180x180" },
   },
   // Enable indexing only when the approved site replaces the production school.
   robots: { index: indexingEnabled, follow: indexingEnabled },

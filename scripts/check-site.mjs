@@ -30,6 +30,14 @@ for (const url of urls) {
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, `One H1: ${path}`);
   assert.equal((html.match(/<main(?:\s|>)/g) || []).length, 1, `One main: ${path}`);
   assert.match(html, /<html[^>]*lang="ru"/);
+  const icons = [...html.matchAll(/<link\b[^>]*\brel="(?:icon|apple-touch-icon)"[^>]*>/g)];
+  assert.equal(icons.length, 4, `SVG, PNG, ICO and Apple icon: ${path}`);
+  for (const [tag] of icons) {
+    const href = tagValue(tag, /href="([^"]+)"/, `Icon URL: ${path}`);
+    assert.ok(href.startsWith(previewBase + '/'), `Icon includes Pages base: ${href}`);
+    assert.ok(existsSync(resolve(outputRoot, '.' + href.slice(previewBase.length).split('?')[0])), `Icon exists: ${href}`);
+    checkedAssets++;
+  }
   assert.match(html, /<meta name="robots" content="noindex, nofollow"\/?\s*>/);
   const title = tagValue(html, /<title>([^<]+)<\/title>/, `Title: ${path}`);
   const description = tagValue(html, /<meta name="description" content="([^"]+)"/, `Description: ${path}`);
