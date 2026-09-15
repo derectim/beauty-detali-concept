@@ -1,16 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { navigation, pagePath, school } from "./site-config";
 
 const items = [
-  { label: "Обучение", href: "#programs" },
-  { label: "Как учим", href: "#method" },
-  { label: "О школе", href: "#people" },
-  { label: "Контакты", href: "#locations" },
-  { label: "Бесплатное занятие", href: "#contact" },
+  ...navigation,
+  { label: "Бесплатное занятие", href: pagePath("/#contact") },
 ];
 
-export default function MobileNav() {
+export default function MobileNav({ directions }: { directions: { title: string; path: string }[] }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -57,11 +55,13 @@ export default function MobileNav() {
         <span />
       </button>
       <div id="mobile-menu" role="navigation" aria-label="Мобильная навигация" hidden={!open}>
+        <details className="mobile-directions"><summary>Направления обучения<span className="disclosure-mark" aria-hidden="true" /></summary><div>{directions.map(direction => <a href={pagePath(direction.path)} key={direction.path} onClick={() => setOpen(false)}>{direction.title}</a>)}</div></details>
         {items.map((item) => (
           <a href={item.href} key={item.href} onClick={() => setOpen(false)}>
             <span>{item.label}</span>
           </a>
         ))}
+        <a className="mobile-menu-phone" href={school.phoneHref}>{school.phone}</a>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from "react";
+import { assetPath, pagePath } from "./site-config";
 
 export type Direction = {
   title: string;
@@ -12,10 +13,9 @@ export type Direction = {
   position?: string;
 };
 
-const assetPath = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
 const canHover = () => window.matchMedia("(min-width: 821px) and (hover: hover) and (pointer: fine)").matches;
 
-export default function CourseDirections({ directions, schoolUrl }: { directions: Direction[]; schoolUrl: string }) {
+export default function CourseDirections({ directions }: { directions: Direction[] }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const previewRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<number | null>(null);
@@ -65,8 +65,8 @@ export default function CourseDirections({ directions, schoolUrl }: { directions
     <div className="programs-intro">
       <p className="eyebrow">КУРСЫ В BEAUTY DETALI SCHOOL</p>
       <h2 id="programs-title">Выберите<br />свою профессию.</h2>
-      <p>От первой техники — к своему делу в индустрии красоты.</p>
-      <a className="text-link" href={`${schoolUrl}/vse-kursy`}>Все программы обучения</a>
+      <p>Найдите базовую программу или обучение конкретной технике.</p>
+      <a className="text-link" href={pagePath("/vse-kursy")}>Все программы обучения</a>
     </div>
     <div
       className="programs-index"
@@ -76,7 +76,7 @@ export default function CourseDirections({ directions, schoolUrl }: { directions
       }}
     >{directions.map((course, index) => <a
       key={course.path}
-      href={`${schoolUrl}${course.path}`}
+      href={pagePath(course.path)}
       onPointerEnter={(event) => showPreview(index, event.clientX, event.clientY)}
       onPointerMove={(event) => showPreview(index, event.clientX, event.clientY)}
       onFocus={(event) => {

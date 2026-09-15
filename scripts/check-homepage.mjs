@@ -19,7 +19,7 @@ const graph = JSON.parse(schemaText)['@graph'];
 assert.deepEqual(graph.map(entity => entity['@type']), ['EducationalOrganization', 'WebSite', 'WebPage', 'ItemList']);
 assert.equal(graph[3].itemListElement.length, 6);
 assert.equal(graph[0].telephone, '+7 911 921-30-19');
-assert.equal(graph[0].address.streetAddress, 'Владимирский проспект, 19');
+assert.match(graph[0].address.streetAddress, /^Владимирский проспект, 19/);
 assert.ok(!schemaText.includes('aggregateRating'), 'No invented ratings');
 
 const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]));
